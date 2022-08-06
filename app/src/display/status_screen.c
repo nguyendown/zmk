@@ -71,5 +71,15 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_align(zmk_widget_wpm_status_obj(&wpm_status_widget), NULL, LV_ALIGN_IN_BOTTOM_RIGHT, -12,
                  0);
 #endif
+
+#if IS_ENABLED(CONFIG_ZMK_WIDGET_LABEL)
+    lv_obj_t *label;
+    label = lv_label_create(screen, NULL);
+    lv_obj_set_style_local_text_font(label,
+                                     LV_LABEL_PART_MAIN, LV_STATE_DEFAULT,
+                                     lv_theme_get_font_small());
+    lv_label_set_text(label, CONFIG_ZMK_WIDGET_LABEL_TEXT);
+    lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+#endif
     return screen;
 }
