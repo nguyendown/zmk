@@ -85,6 +85,7 @@ lv_obj_t *zmk_display_status_screen() {
                                      lv_theme_get_font_small());
     lv_label_set_text(label, CONFIG_ZMK_WIDGET_LABEL_TEXT);
     lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+#endif
 
 #if IS_ENABLED(CONFIG_ZMK_WIDGET_BONGO_CAT)
     zmk_widget_bongo_cat_init(&bongo_cat_widget, screen);
