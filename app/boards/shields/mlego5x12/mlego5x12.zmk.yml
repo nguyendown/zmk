@@ -1,0 +1,8 @@
+file_format: "1"
+id: mlego5x12
+name: mlego m65 5x12
+type: shield
+url: https://gitlab.com/m-lego/m60/
+requires: [blackpill_f401ce]
+features:
+  - keys
