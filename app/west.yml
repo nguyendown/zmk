@@ -6,10 +6,12 @@ manifest:
       url-base: https://github.com/petejohanson
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: nguyendown
+      url-base: https://github.com/nguyendown
   projects:
     - name: zephyr
-      remote: petejohanson
-      revision: v3.2.0+zmk-fixes
+      remote: nguyendown
+      revision: v3.2.0+zmk-fixes+shield-cmake
       clone-depth: 1
       import:
         # TODO: Rename once upstream offers option like `exclude` or `denylist`
