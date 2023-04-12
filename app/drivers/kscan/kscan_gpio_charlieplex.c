@@ -124,7 +124,7 @@ static int kscan_charlieplex_read(const struct device *dev) {
             if (debounce_get_changed(state)) {
                 const bool is_pressed = debounce_is_pressed(state);
 
-                LOG_DBG("Sending event at %i,%i state %s", o, i, is_pressed ? "on" : "off");
+                LOG_DBG("Sending event at %o,%i state %s", o, i, is_pressed ? "on" : "off");
                 data->callback(dev, o, i, is_pressed);
             }
 
