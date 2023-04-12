@@ -84,8 +84,6 @@ static int kscan_charlieplex_read(const struct device *dev) {
             return err;
         }
 
-        LOG_DBG("Configured pin %u on %s for output", out_gpio->pin, out_gpio->port->name);
-
         // Init input
         for (int i = (o + 1) % config->gpios_len; i != o; i = (i + 1) % config->gpios_len) {
             const struct gpio_dt_spec *in_gpio = &config->gpios[i];
@@ -101,8 +99,6 @@ static int kscan_charlieplex_read(const struct device *dev) {
                         in_gpio->port->name);
                 return err;
             }
-
-            LOG_DBG("Configured pin %u on %s for input", in_gpio->pin, in_gpio->port->name);
         }
 
         err = gpio_pin_set_dt(out_gpio, 1);
