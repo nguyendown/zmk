@@ -153,13 +153,13 @@ static int kscan_charlieplex_read(const struct device *dev) {
     return 0;
 }
 
-static void kscan_matrix_work_handler(struct k_work *work) {
+static void kscan_charlieplex_work_handler(struct k_work *work) {
     struct k_work_delayable *dwork = CONTAINER_OF(work, struct k_work_delayable, work);
     struct kscan_charlieplex_data *data = CONTAINER_OF(dwork, struct kscan_charlieplex_data, work);
     kscan_charlieplex_read(data->dev);
 }
 
-static int kscan_matrix_configure(const struct device *dev, const kscan_callback_t callback) {
+static int kscan_charlieplex_configure(const struct device *dev, const kscan_callback_t callback) {
     struct kscan_charlieplex_data *data = dev->data;
 
     if (!callback) {
@@ -170,7 +170,7 @@ static int kscan_matrix_configure(const struct device *dev, const kscan_callback
     return 0;
 }
 
-static int kscan_matrix_enable(const struct device *dev) {
+static int kscan_charlieplex_enable(const struct device *dev) {
     struct kscan_charlieplex_data *data = dev->data;
 
     data->scan_time = k_uptime_get();
@@ -179,7 +179,7 @@ static int kscan_matrix_enable(const struct device *dev) {
     return kscan_charlieplex_read(dev);
 }
 
-static int kscan_matrix_disable(const struct device *dev) {
+static int kscan_charlieplex_disable(const struct device *dev) {
     struct kscan_charlieplex_data *data = dev->data;
 
     k_work_cancel_delayable(&data->work);
@@ -192,15 +192,15 @@ static int kscan_charlieplex_init(const struct device *dev) {
 
     data->dev = dev;
 
-    k_work_init_delayable(&data->work, kscan_matrix_work_handler);
+    k_work_init_delayable(&data->work, kscan_charlieplex_work_handler);
 
     return 0;
 }
 
 static const struct kscan_driver_api kscan_charlieplex_api = {
-    .config = kscan_matrix_configure,
-    .enable_callback = kscan_matrix_enable,
-    .disable_callback = kscan_matrix_disable,
+    .config = kscan_charlieplex_configure,
+    .enable_callback = kscan_charlieplex_enable,
+    .disable_callback = kscan_charlieplex_disable,
 };
 
 #define KSCAN_CHARLIEPLEX_INIT(n)                                                                  \
