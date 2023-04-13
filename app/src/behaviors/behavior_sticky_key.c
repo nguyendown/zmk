@@ -167,7 +167,7 @@ static int on_sticky_key_binding_released(struct zmk_behavior_binding *binding,
     // No other key was pressed. Start the timer.
     sticky_key->timer_started = true;
     // adjust timer in case this behavior was queued by a hold-tap
-    int32_t ms_left = sticky_key->release_at - k_uptime_get();
+    int32_t ms_left = sticky_key->release_at - event.timestamp;
     if (ms_left < 0) {
         ms_left = 0;
     }
