@@ -212,14 +212,6 @@ static int sticky_key_keycode_state_changed_listener(const zmk_event_t *eh) {
             continue;
         }
 
-        // If this event was queued, the timer may be triggered late or not at all.
-        // Release the sticky key if the timer should've run out in the meantime.
-        if (sticky_key->release_at != 0 && ev_copy.timestamp > sticky_key->release_at) {
-            stop_timer(sticky_key);
-            release_sticky_key_behavior(sticky_key, sticky_key->release_at);
-            continue;
-        }
-
         if (ev_copy.state) { // key down
             if (sticky_key->config->ignore_modifiers &&
                 is_mod(ev_copy.usage_page, ev_copy.keycode)) {
