@@ -39,7 +39,7 @@ config ZMK_WIDGET_WPM_STATUS
 config ZMK_WIDGET_BONGO_CAT
     bool "Widget for displaying bongo cat"
     depends on !ZMK_SPLIT || ZMK_SPLIT_BLE_ROLE_CENTRAL
-    select LVGL_USE_LABEL
-    select LVGL_USE_IMG
+    select LV_USE_LABEL
+    select LV_USE_IMG
 
 endmenu
